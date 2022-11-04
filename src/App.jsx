@@ -8,6 +8,11 @@ import AddSongForm from "./Components/AddSongForm/AddSongForm";
 function App() {
   const [songs, setSongs] = useState([]);
 
+  function addNewSong(song) {
+    let tempSongs = [...songs, song];
+    setSongs(tempSongs);
+  }
+
   useEffect(() => {
     getAllSongs();
   }, []);
@@ -21,7 +26,7 @@ function App() {
       Let'sa go!
       <SearchBar songs={songs} />
       <MusicTable songs={songs} />
-      <AddSongForm />
+      <AddSongForm addNewSong={addNewSong} />
     </div>
   );
 }
