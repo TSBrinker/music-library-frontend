@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import MusicTable from "./Components/MusicTable/MusicTable";
 import SearchBar from "./Components/SearchBar/SearchBar";
+import AddSongForm from "./Components/AddSongForm/AddSongForm";
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -20,6 +21,7 @@ function App() {
       Let'sa go!
       <SearchBar songs={songs} />
       <MusicTable songs={songs} />
+      <AddSongForm />
     </div>
   );
 }
