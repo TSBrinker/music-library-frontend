@@ -6,20 +6,41 @@ const SearchBar = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let query = query;
+    let songs;
+    console.log(props.songs);
+    console.log(query);
+    if (query.length > 0) {
+      songs = props.songs.filter((song) => {
+        if (
+          song.title.includes(query) ||
+          song.artist.includes(query) ||
+          song.album.includes(query) ||
+          song.release_date.includes(query) ||
+          song.genre.includes(query)
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      console.log(songs);
+      setQuery("");
+      props.setSongs(songs);
+    } else {
+      props.setSongs(props.getAllSongs());
+    }
   }
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
-        required
         type="text"
         value={query}
         placeholder="What are you looking for?"
         onChange={(event) => setQuery(event.target.value)}
       />
-      <button type="submit">Search</button>
-    </div>
+      <button type="submit">Show me the money!</button>
+    </form>
   );
 };
 

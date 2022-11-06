@@ -7,7 +7,16 @@ const AddSongForm = (props) => {
   const [album, setAlbum] = useState("");
   const [release_date, setReleaseDate] = useState("");
   const [genre, setGenre] = useState("");
-  const [likes, setLikes] = useState("");
+
+  async function addNewSong(newSong) {
+    let response = await axios.post(
+      "http://127.0.0.1:8000/api/music/",
+      newSong
+    );
+    if (response.status === 201) {
+      await props.getAllSongs();
+    }
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,14 +28,20 @@ const AddSongForm = (props) => {
       genre: genre,
       likes: 0,
     };
-    props.addNewSong(newSong);
+    setTitle("");
+    setArtist("");
+    setAlbum("");
+    setReleaseDate("");
+    setGenre("");
+
+    addNewSong(newSong);
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Title</label>
       <input
         required
+        placeholder="Title..."
         type="text"
         value={title}
         onChange={(event) => setTitle(event.target.value)}

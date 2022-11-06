@@ -8,16 +8,6 @@ import AddSongForm from "./Components/AddSongForm/AddSongForm";
 function App() {
   const [songs, setSongs] = useState([]);
 
-  async function addNewSong(newSong) {
-    let response = await axios.post(
-      "http://127.0.0.1:8000/api/music/",
-      newSong
-    );
-    if (response.status === 201) {
-      await getAllSongs();
-    }
-  }
-
   useEffect(() => {
     getAllSongs();
   }, []);
@@ -29,9 +19,9 @@ function App() {
   return (
     <div className="App">
       Let'sa go!
-      <SearchBar songs={songs} />
+      <SearchBar songs={songs} setSongs={setSongs} />
       <MusicTable songs={songs} />
-      <AddSongForm addNewSong={addNewSong} />
+      <AddSongForm getAllSongs={getAllSongs} />
     </div>
   );
 }
