@@ -7,6 +7,7 @@ import AddSongForm from "./Components/AddSongForm/AddSongForm";
 
 function App() {
   const [songs, setSongs] = useState([]);
+  const [allSongs, setAllSongs] = useState([]);
 
   useEffect(() => {
     getAllSongs();
@@ -16,10 +17,10 @@ function App() {
     let response = await axios.get("http://127.0.0.1:8000/api/music/");
     setSongs(response.data);
   }
+
   return (
     <div className="App">
-      Let'sa go!
-      <SearchBar songs={songs} setSongs={setSongs} />
+      <SearchBar songs={songs} setSongs={setSongs} getAllSongs={getAllSongs} />
       <MusicTable songs={songs} />
       <AddSongForm getAllSongs={getAllSongs} />
     </div>

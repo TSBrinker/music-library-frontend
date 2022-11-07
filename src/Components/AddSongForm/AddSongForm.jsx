@@ -1,5 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Col from "react-bootstrap/Col";
+import { Form } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 const AddSongForm = (props) => {
   const [title, setTitle] = useState("");
@@ -38,44 +41,56 @@ const AddSongForm = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        required
-        placeholder="Title..."
-        type="text"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
-      <label>Artist</label>
-      <input
-        required
-        type="text"
-        value={artist}
-        onChange={(event) => setArtist(event.target.value)}
-      />
-      <label>Album</label>
-      <input
-        required
-        type="text"
-        value={album}
-        onChange={(event) => setAlbum(event.target.value)}
-      />
-      <label>Release Date</label>
-      <input
-        required
-        type="date"
-        value={release_date}
-        onChange={(event) => setReleaseDate(event.target.value)}
-      />
-      <label>Genre</label>
-      <input
-        required
-        type="text"
-        value={genre}
-        onChange={(event) => setGenre(event.target.value)}
-      />
+    <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col>
+          <input
+            required
+            placeholder="Title"
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </Col>
+        <Col>
+          <input
+            required
+            placeholder="Artist"
+            type="text"
+            value={artist}
+            onChange={(event) => setArtist(event.target.value)}
+          />
+        </Col>
+        <Col>
+          <input
+            required
+            placeholder="Album"
+            type="text"
+            value={album}
+            onChange={(event) => setAlbum(event.target.value)}
+          />
+        </Col>
+        <Col>
+          <input
+            required
+            type="date"
+            value={release_date}
+            onChange={(event) => setReleaseDate(event.target.value)}
+          />
+        </Col>
+        <Col>
+          <input
+            required
+            placeholder="Genre"
+            type="text"
+            value={genre}
+            onChange={(event) => setGenre(event.target.value)}
+          />
+        </Col>
+      </Row>
+
       <button type="submit">Add song</button>
-    </form>
+    </Form>
   );
 };
 

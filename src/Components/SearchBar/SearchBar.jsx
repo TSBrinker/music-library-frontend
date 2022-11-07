@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
 const SearchBar = (props) => {
   const [query, setQuery] = useState("");
@@ -26,13 +28,11 @@ const SearchBar = (props) => {
       console.log(songs);
       setQuery("");
       props.setSongs(songs);
-    } else {
-      props.setSongs(props.getAllSongs());
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
@@ -40,7 +40,7 @@ const SearchBar = (props) => {
         onChange={(event) => setQuery(event.target.value)}
       />
       <button type="submit">Show me the money!</button>
-    </form>
+    </Form>
   );
 };
 
